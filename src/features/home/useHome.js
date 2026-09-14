@@ -68,7 +68,7 @@ export const useHome = () => {
   };
 
   const emptyDataValidator = (userData) => {
-    const isValidate = true;
+    let isValidate = true;
     for (const [key, value] of Object.entries(userData)) {
       if (value === "") {
         setActionError(`${key} is required !`);
