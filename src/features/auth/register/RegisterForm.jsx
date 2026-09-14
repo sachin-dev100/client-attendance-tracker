@@ -92,13 +92,16 @@ const RegisterForm = () => {
             <SelectValue placeholder="Select Branch" />
           </SelectTrigger>
           <SelectContent className="bg-white">
-            <SelectItem value="computer science">
-              Computer Science Enginnering
+            <SelectItem value="AI">
+              Artifical & Data Enginnering
             </SelectItem>
-            <SelectItem value="civil">Civil Enginnering</SelectItem>
-            <SelectItem value="electronics">Electronics Enginnering</SelectItem>
+            <SelectItem value="computer">Computer Science Enginnering</SelectItem>
+            <SelectItem value="electronics">Electronics & Communication Enginnering</SelectItem>
             <SelectItem value="electrical">Electrical Enginnering</SelectItem>
+            <SelectItem value="mechanical">Mechanical Enginnering</SelectItem>
             <SelectItem value="chemical">Chemical Enginnering</SelectItem>
+            <SelectItem value="civil">Civil Enginnering</SelectItem>
+            <SelectItem value="meta">Metallugical & Material Enginnering</SelectItem>
           </SelectContent>
         </Select>
         <Button

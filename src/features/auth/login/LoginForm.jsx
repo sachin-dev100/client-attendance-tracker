@@ -3,7 +3,6 @@ import {useNavigate} from "react-router-dom";
 import {useLogin} from "./useLogin.js";
 import {Input} from "@/components/ui/shadcn/input";
 import {Button} from "@/components/ui/shadcn/button";
-import {apiStatusConstant} from "@/utils/constant";
 
 const LoginForm = () => {
   const {
@@ -47,9 +46,9 @@ const LoginForm = () => {
         disabled={isSubmitting}>
         {isSubmitting ? "Signing in..." : "Sign in"}
       </Button>
-      <Button size="lg" className="h-12 mt-4" onClick={loginWithGoogle}>
+      {/* <Button size="lg" className="h-12 mt-4" onClick={loginWithGoogle}>
         Login With Google
-      </Button>
+      </Button> */}
 
       {actionError && (
         <p className="text-danger text-sm text-right mt-1">

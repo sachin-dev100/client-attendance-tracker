@@ -22,7 +22,7 @@ const Layout = ({children}) => {
 
   return (
     <div className="min-h-dvh flex flex-col">
-      <header className="flex justify-between items-center bg-header sticky top-0 z-100 h-[10vh] px-4 md:px-20">
+      <header className="flex justify-between items-center bg-[#005c99] sticky top-0 z-100 h-[10vh] px-4 md:px-20">
         <h1 className="text-base/5 text-white font-600 font-logo">
           Attendence <br />
           <span className="text-[15px] text-primary">Tracker</span>

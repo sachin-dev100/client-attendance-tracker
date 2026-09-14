@@ -8,7 +8,7 @@ export const useRegister = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [gender, setGender] = useState("male");
-  const [branch, setBranch] = useState("computer science");
+  const [branch, setBranch] = useState("computer");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [actionError, setActionError] = useState(null);
