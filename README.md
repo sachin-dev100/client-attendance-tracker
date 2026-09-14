@@ -1,0 +1,7 @@
+# Color Palete
+
+--black: #000000ff;
+--prussian-blue: #14213dff;
+--orange: #fca311ff;
+--alabaster-grey: #e5e5e5ff;
+--white: #ffffffff;
