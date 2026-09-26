@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Cookies from "js-cookie";
 
-import {login, loggingWithGoogle} from "../../../services/auth.service";
+import {login, loggingWithGoogle} from "@/services/auth.service";
 
 export const useLogin = () => {
   // state variables

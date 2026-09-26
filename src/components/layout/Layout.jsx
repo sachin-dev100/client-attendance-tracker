@@ -13,7 +13,8 @@ const Layout = ({children}) => {
   const {pathname} = useLocation();
   const navigate = useNavigate();
 
-  const isHideContent = pathname === "/login" || pathname === "/register";
+  const headerHidePath = ["/login", "/register", "/email-validator", '/password-recovery']
+  const isHideContent = headerHidePath.includes(pathname)
 
   const userLogOut = () => {
     Cookies.remove("jwtToken");

@@ -10,15 +10,17 @@ import {
 
 import StatusModel from "./StatusModel";
 
-import {RiArrowDropDownLine} from "react-icons/ri";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
-import {monthList, weekList, statusColorMap} from "@/utils/constant.js";
+import { monthList, weekList, statusColorMap } from "@/utils/constant.js";
 
 import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/ui/shadcn/toggle-group";
-import {Button} from "@/components/ui/shadcn/button";
+
+import { Button } from "@/components/ui/shadcn/button";
+
 import {
   Popover,
   PopoverContent,
@@ -44,10 +46,8 @@ const Calender = (props) => {
   } = props;
 
   const monthFirstDate = new Date(activeYear, activeMonth - 1, 1);
-  console.log(monthFirstDate);
   const firstDay = monthFirstDate.getDay();
-  const emptyArray = Array.from({length: firstDay});
-  console.log(firstDay);
+  const emptyArray = Array.from({ length: firstDay });
 
   const yearListData = getYearList();
   const days = noOfDaysInMonth(activeYear, activeMonth);
@@ -108,7 +108,7 @@ const Calender = (props) => {
                         value={eachMonth.value}
                         onClick={onChangeActiveMonth}
                         size="lg"
-                        className={`w-[100%] ${eachMonth.value == activeMonth ? "bg-orange" : "bg-secondary"}`}>
+                        className={`w-full ${eachMonth.value == activeMonth ? "bg-orange" : "bg-secondary"}`}>
                         {eachMonth.label}
                       </Button>
                     </li>
@@ -120,7 +120,7 @@ const Calender = (props) => {
         </div>
       </div>
 
-      <ul className="grid grid-cols-[repeat(7,_1fr)] mt-5 gap-0 font-text text-base">
+      <ul className="grid grid-cols-[repeat(7,1fr)] mt-5 gap-0 font-text text-base">
         {weekList.map((week) => {
           return (
             <li className="text-sm flex justify-center items-center aspect-square border border-primary bg-primary text-white">
@@ -130,7 +130,7 @@ const Calender = (props) => {
         })}
       </ul>
 
-      <ul className="grid grid-cols-[repeat(7,_1fr)] mt-5 gap-0 font-text text-base">
+      <ul className="grid grid-cols-[repeat(7,1fr)] mt-5 gap-0 font-text text-base">
         {emptyArray.map((item) => {
           return (
             <li className="text-sm flex justify-center items-center aspect-square border border-primary/30 bg-tranparent text-white" />

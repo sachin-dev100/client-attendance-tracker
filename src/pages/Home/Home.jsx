@@ -1,5 +1,7 @@
+import {useState} from 'react'
+
 // import custom Hooks
-import {useHome} from "@/features/home/useHome.js";
+import {useHome} from "@/hooks/useHome.js";
 
 // import Component
 import SubjectItem from "@/features/home/SubjectItem";
@@ -23,6 +25,8 @@ const Home = () => {
     actionStatus,
     openSubject,
     selectedSubject,
+    searchSubject,
+    onChangeSearchSubject,
     onHandleSelectedSubject,
     openSubjectModal,
     closeSubjectModal,
@@ -34,21 +38,22 @@ const Home = () => {
 
   const {isLoading, data, error} = fetchStatus;
 
-  const HomeSuccessView = () => {
+  const renderHomeSuccessView = () => {
     const subjectsList = data;
-    const isListEmpty = subjectsList.length === 0;
+    const isListEmpty = subjectsList.length === 0
+    const notFoundSubject = isListEmpty && searchSubject !== ""
+
     if (!isListEmpty) {
       subjectsList.sort(
         (first, second) => first.percentage - second.percentage,
       );
     }
 
-    return isListEmpty ? (
+    return isListEmpty && !notFoundSubject ? (
       // Subject List Empty
       <div className="flex justify-center items-center grow">
         <Button
           className="size-40 rounded-full bg-radial-[at_25%_25%] from-blue to-zinc-900 to-75% flex justify-center items-center bg-primary"
-          onClick={openSubjectModal}
           disabled={openSubject}
           onClick={() => {
             openSubjectModal();
@@ -95,11 +100,16 @@ const Home = () => {
         </div>
         <Input
           type="search"
+          value = {searchSubject}
+          onChange = {onChangeSearchSubject}
           className="mt-3 h-9 border-none"
           placeholder="Search Subject..."
         />
         {/* list of subjects */}
-        <ul className="grid md:grid-cols-4 gap-3 pt-5 pb-5">
+        {
+          notFoundSubject ? (
+            <h1> Not Found Subject </h1>
+          ): (<ul className="grid md:grid-cols-4 gap-3 pt-5 pb-5">
           {subjectsList.map((subject) => (
             <SubjectItem
               onDeleteSubject={onDeleteSubject}
@@ -109,15 +119,20 @@ const Home = () => {
               openSubjectModal={openSubjectModal}
             />
           ))}
-        </ul>
+        </ul>)
+        }
+        
       </>
     );
   };
 
   // render different view
-  if (isLoading) return <ProgressView />;
+  if (isLoading && !data) return <ProgressView />;
   if (error) return <h1> {error}</h1>;
-  if (data) return <HomeSuccessView />;
+  if (data) return renderHomeSuccessView();
+
+
+
 };
 
 export default Home;

@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 
-import {useRegister} from "./useRegister.js";
+import {useRegister} from "../../hooks/useRegister.js";
 
 import {Input} from "@/components/ui/shadcn/input";
 import {RadioGroup, RadioGroupItem} from "@/components/ui/shadcn/radio-group";
@@ -104,12 +104,18 @@ const RegisterForm = () => {
             <SelectItem value="meta">Metallugical & Material Enginnering</SelectItem>
           </SelectContent>
         </Select>
+        <div className ="flex flex-col gap-0.4">
         <Button
-          className="w-full block m-auto h-12 shadow text-secondary text-base font-bold"
+          className="w-full block h-12 shadow text-white text-base"
           onClick={onSubmit}
           disabled={isSubmitting}>
           {isSubmitting ? "Signing up..." : "Sign up"}
         </Button>
+        {actionError && (<p className="text-danger text-sm text-right mt-1">
+          {actionError}
+        </p>)}
+        </div>
+        
       </div>
       <Button
         variant="ghost"

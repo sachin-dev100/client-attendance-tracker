@@ -26,7 +26,7 @@ const SubjectItem = (props) => {
   const isHigh = percentage >= 75;
   return (
     <li
-      className="relative flex justify-between items-center bg-transparent px-3 py-2 rounded-md border border-primary/9 shadow-md shadow-primary/50"
+      className="relative cursor-pointer flex md:flex-col justify-between items-center bg-transparent px-3 py-2 rounded-md border border-primary/9 shadow-md shadow-primary/50"
       onClick={() => navigate(`/subject-status/${id}`)}>
       <SubjectMenu
         onDeleteSubject={onDeleteSubject}
@@ -40,23 +40,27 @@ const SubjectItem = (props) => {
           <BsThreeDotsVertical size={20} />
         </Button>
       </SubjectMenu>
-      <div className="grow">
-        <h1 className="grow text-white font-base text-md/6 pr-3">
-          {subjectName}
-        </h1>
-        <p
-          className={`${isHigh ? "text-success" : "text-danger"} text-[12px] font-400`}>
-          {isHigh ? "Sufficient Classes" : `ClassNeeded : ${classNeeded}`}
-        </p>
-      </div>
-      <div className="pr-4">
-        <ProgressCircle
-          radius={27}
-          progress={percentage}
-          size={58}
-          stroke={4}
-          progressColor={percentage >= 75 ? "var(--success)" : "var(--danger)"}
-        />
+      <div className="grow flex md:flex-col-reverse md:justify-center items-center md:gap-3">
+        <div className="grow md:text-center">
+          <h1 className="grow text-white font-base text-md/6 pr-3">
+            {subjectName}
+          </h1>
+          <p
+            className={`${isHigh ? "text-success" : "text-danger"} text-[12px] font-400`}>
+            {isHigh ? "Sufficient Classes" : `ClassNeeded : ${classNeeded}`}
+          </p>
+        </div>
+        <div className="pr-4">
+          <ProgressCircle
+            radius={27}
+            progress={percentage}
+            size={70}
+            stroke={4}
+            progressColor={
+              percentage >= 75 ? "var(--success)" : "var(--danger)"
+            }
+          />
+        </div>
       </div>
     </li>
   );

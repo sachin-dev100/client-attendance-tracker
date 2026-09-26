@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-const BASE_URL = import.meta.env.VITE_BASE_URL;
+const BASE_URL = "https://attendence-tracker-o32b.onrender.com/api/v1"
 
 export const apiHandler = async (apiConfig) => {
   const {
@@ -14,23 +14,21 @@ export const apiHandler = async (apiConfig) => {
   const jwtToken = Cookies.get("jwtToken");
 
   // header include credential or not
-  const headers =
-    credentials === "include"
-      ? {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${jwtToken}`,
-        }
-      : {
-          "Content-Type": "application/json",
-        };
+  const headers = {
+    "Content-Type": "application/json",
+    ...(credentials === "include" ? { Authorization: `Bearer ${jwtToken}` } : {})
+  }
+
+  // is body is exist inside request
+  const body =
+    method === "GET" || method === "DELETE"
+      ? null
+      : JSON.stringify(bodyContent)
 
   const options = {
     method,
     headers,
-    body:
-      method === "GET" || method === "DELETE"
-        ? null
-        : JSON.stringify(bodyContent),
+    body
   };
 
   const response = await fetch(apiUrl, options);

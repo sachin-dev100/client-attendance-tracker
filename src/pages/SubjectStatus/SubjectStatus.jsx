@@ -1,8 +1,9 @@
-import {useStatus} from "@/features/subjectStatus/useStatus.js";
+import { useStatus } from "@/hooks/useStatus.js";
 
 import ProgressView from "../../components/ui/shadcn/Loader";
 import Calender from "@/features/subjectStatus/Calender";
 import SubjectStatsSection from "../../features/subjectStatus/SubjectStatsSection";
+import AttendenceList from "@/features/subjectStatus/AttendenceList";
 // import SubjectStatsItem from "@/features/subjectStatus/SubjectStatsItem";
 // import AttendenceMark from "@/features/subjectStatus/AttendenceMark";
 
@@ -24,15 +25,15 @@ const SubjectStatus = () => {
     onChangeAttendenceStatus,
   } = useStatus();
 
-  const {data, isLoading, error} = fetchStatus;
+  const { data, isLoading, error } = fetchStatus;
 
   const StatusSuccessView = () => {
     const attendenceRecordList = data.attendence;
     const subjectData = data.stats;
-    const {subjectName, percentage} = subjectData;
+    const { subjectName, percentage } = subjectData;
     return (
       <main className="lg:flex lg:gap-7 pt-2 pb-4">
-        <section className="lg:grow">
+        <section className="lg:w-100">
           <header className="flex flex-col">
             <h1 className="text-xl text-white font-bold">{subjectName} 📗</h1>
             {/* apply less than red more than green color ?? */}
@@ -66,9 +67,13 @@ const SubjectStatus = () => {
           </article>
         </section>
 
-        <section className="pt-3 pb-3 lg:w-200">
+        <section className="pt-3 pb-3 lg:w-120">
           <h1 className="mb-3 text-lg font-semibold font-heading"> Status </h1>
           <SubjectStatsSection subjectStatus={subjectData} />
+        </section>
+
+        <section className="lg:grow">
+          <AttendenceList attendenceRecordList={attendenceRecordList} />
         </section>
       </main>
     );

@@ -1,4 +1,4 @@
-import {useModal} from "./useModal.js";
+import {useModal} from "../../hooks/useModal.js";
 
 import {
   AlertDialogAction,

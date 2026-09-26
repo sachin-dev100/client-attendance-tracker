@@ -8,6 +8,7 @@ export const useRegister = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [gender, setGender] = useState("male");
+  
   const [branch, setBranch] = useState("computer");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,7 +47,8 @@ export const useRegister = () => {
   };
 
   const onSubmit = async () => {
-    setIsSubmitting(true);
+    if (fullName !== "" && email !== "" && password !== "" && confirmPassword !== ""){
+      setIsSubmitting(true);
     setActionError(null);
 
     const userDetails = {
@@ -64,6 +66,10 @@ export const useRegister = () => {
       setActionError(error.message);
     } finally {
       setIsSubmitting(false);
+    }
+    }
+    else{
+      setActionError("Must Fill All Required Fields")
     }
   };
 

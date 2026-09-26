@@ -6,9 +6,9 @@ import {apiHandler} from "../lib/api.js";
 //     bodyContent: userDetails,
 //     defaultErrMsg: "Registration Failed",
 
-export const gettingSubjectDetails = async () => {
+export const gettingSubjectDetails = async (searchSubject) => {
   const subjectList = await apiHandler({
-    endPoint: "subjects",
+    endPoint: `subjects?search=${encodeURIComponent(searchSubject)}`,
     method: "GET",
     defaultErrMsg: "Subject Fetch Failed",
   });

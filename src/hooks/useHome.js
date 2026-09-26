@@ -14,6 +14,11 @@ export const useHome = () => {
   // Subject Modal State
   const [openSubject, setOpenSubject] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState(null);
+  const [searchSubject, setSearchSubject] = useState("");
+
+  const onChangeSearchSubject = (event) => {
+    setSearchSubject(event.target.value)
+  }
 
   const onHandleSelectedSubject = (data) => {
     setSelectedSubject(data);
@@ -44,15 +49,15 @@ export const useHome = () => {
   };
 
   useEffect(() => {
-    onFetchSubject();
-  }, []);
+    onFetchSubject(searchSubject);
+  }, [searchSubject]);
 
   // Fetching Subject Details
   const onFetchSubject = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      const data = await gettingSubjectDetails();
+      const data = await gettingSubjectDetails(searchSubject);
       setData(data);
     } catch (error) {
       setError(error.message);
@@ -143,6 +148,8 @@ export const useHome = () => {
     fetchStatus,
     actionStatus,
     openSubject,
+    searchSubject,
+    onChangeSearchSubject,
     selectedSubject,
     onHandleSelectedSubject,
     openSubjectModal,

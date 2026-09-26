@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
-import {ToggleGroup as ToggleGroupPrimitive} from "radix-ui";
+import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
 
-import {cn} from "@/lib/utils";
-import {toggleVariants} from "@/components/ui/shadcn/toggle";
+import { cn } from "@/lib/utils";
+import { toggleVariants } from "@/components/ui/shadcn/toggle";
 
 const ToggleGroupContext = React.createContext({
   size: "default",
@@ -37,7 +37,7 @@ function ToggleGroup({
       )}
       {...props}>
       <ToggleGroupContext.Provider
-        value={{variant, size, spacing, orientation}}>
+        value={{ variant, size, spacing, orientation }}>
         {children}
       </ToggleGroupContext.Provider>
     </ToggleGroupPrimitive.Root>
@@ -73,4 +73,4 @@ function ToggleGroupItem({
   );
 }
 
-export {ToggleGroup, ToggleGroupItem};
+export { ToggleGroup, ToggleGroupItem };

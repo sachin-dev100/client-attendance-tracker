@@ -1,6 +1,6 @@
-import {useNavigate} from "react-router-dom";
+import {redirect, useNavigate} from "react-router-dom";
 
-import {useLogin} from "./useLogin.js";
+import {useLogin} from "../../hooks/useLogin.js";
 import {Input} from "@/components/ui/shadcn/input";
 import {Button} from "@/components/ui/shadcn/button";
 
@@ -36,12 +36,12 @@ const LoginForm = () => {
         />
       </div>
       <div className="text-right mb-4">
-        <Button variant="ghost" className="text-destructive font-base">
+        <Button variant="ghost" className="text-destructive font-base" onClick = {() => navigate('/email-validator')}>
           Forget Your password ?
         </Button>
       </div>
       <Button
-        className="w-full block mx-auto h-12 shadow text-secondary text-base font-bold"
+        className="w-full block mx-auto h-12 shadow text-white text-base"
         onClick={onLogin}
         disabled={isSubmitting}>
         {isSubmitting ? "Signing in..." : "Sign in"}
@@ -55,6 +55,7 @@ const LoginForm = () => {
           username and password is invalid
         </p>
       )}
+            
       <Button
         variant="ghost"
         className="w-full mt-6 font-text text-lg text-success"

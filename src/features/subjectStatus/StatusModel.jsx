@@ -1,4 +1,4 @@
-import {useModal} from "../../features/subjectStatus/useModal.js";
+import {useModal} from "../../hooks/useStatusModal.js";
 
 import {RadioGroup, RadioGroupItem} from "@/components/ui/shadcn/radio-group";
 import {Button} from "@/components/ui/shadcn/button";

@@ -50,3 +50,12 @@ export const subjectMenuMethod = [
     method: () => {},
   },
 ];
+
+export const dateFormatter = (isoDate) => {
+  const date = new Date(isoDate);
+
+// Format options to get "18-Sep"
+  const formatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short' });
+  const formatted = formatter.format(date).replace(' ', '-').toLowerCase();
+  return formatted
+}
