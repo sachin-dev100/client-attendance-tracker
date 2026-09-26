@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-const BASE_URL = import.meta.env.SERVER_URL
+const BASE_URL = import.meta.env.VITE_SERVER_URL
 
 export const apiHandler = async (apiConfig) => {
   const {
