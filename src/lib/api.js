@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-const BASE_URL = "https://attendence-tracker-o32b.onrender.com/api/v1"
+const BASE_URL = import.meta.env.SERVER_URL
 
 export const apiHandler = async (apiConfig) => {
   const {
