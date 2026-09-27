@@ -48,15 +48,16 @@ export const useRegister = () => {
   };
 
   const onSubmit = async () => {
+    if (fullName === "" || email === "" || password === "" || confirmPassword === "") {
+      setActionError("Must Fill All Required Fields");
+      return;
+    }
+
     if (!emailValidator(email)) {
       setActionError("Provide valid Email Formate")
       return;
     }
 
-    if (fullName === "" || email === "" || password === "" || confirmPassword === "") {
-      setActionError("Must Fill All Required Fields");
-      return;
-    }
     setIsSubmitting(true);
     setActionError(null);
 
