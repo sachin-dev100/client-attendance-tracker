@@ -1,8 +1,8 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
-import {login, loggingWithGoogle} from "@/services/auth.service";
+import { login } from "@/services/auth.service";
 
 export const useLogin = () => {
   // state variables
@@ -31,9 +31,9 @@ export const useLogin = () => {
   const onLogin = async () => {
     setIsSubmitting(true);
     setActionError(null);
-    const userCredential = {email, password}; // set user credientials for login
+    const userCredential = { email, password }; // set user credientials for login
     try {
-      const {jwt} = await login(userCredential); // get jwtToken
+      const { jwt } = await login(userCredential); // get jwtToken
       Cookies.set("jwtToken", jwt); // store jwt token inside browser cookies
       // navigate to home page
       navigate("/");
