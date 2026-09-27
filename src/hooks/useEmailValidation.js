@@ -1,5 +1,6 @@
-import { emailValidation } from '@/services/auth.service';
-import {useState} from 'react'
+import { isEmailExist } from '@/services/auth.service';
+import { emailValidator } from '@/utils/helper';
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const useEmailValidation = () => {
@@ -7,39 +8,44 @@ const useEmailValidation = () => {
     const [email, setEmail] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [actionError, setActionError] = useState(null);
-    const actionStatus = {isSubmitting, actionError}
+    const actionStatus = { isSubmitting, actionError }
 
     const onChangeEmail = (event) => {
         setEmail(event.target.value)
     }
 
     const onValidateEmail = async () => {
-        if (email != ""){
+        if (email === "") {
+            setActionError("Required Email...")
+            return
+        }
+
+        if (!emailValidator(email)) {
+            setActionError("Provide valid Email Formate")
+            return
+        }
+
         setIsSubmitting(true)
         setActionError(null)
-        const emailDetails = {email}
+        const emailDetails = { email }
         // console.log("on Valiate Email function execute...")
-         try {
-            const {isEmailValid} = await emailValidation(emailDetails)
-            if (isEmailValid){
+        try {
+            const { isEmailValid } = await isEmailExist(emailDetails)
+            if (isEmailValid) {
                 sessionStorage.setItem("email", email) // email store inside local storage
                 navigate('/password-recovery') // redirect to password-recovery route
             }
-            else{
+            else {
                 setActionError("Email is Invalid") // if email is not valid then email is invalid
             }
-         } catch (error) {
+        } catch (error) {
             setActionError(error.message)
             console.log(error.message)
-         }
-         finally{
+        }
+        finally {
             setIsSubmitting(false)
-         }
         }
-        else{
-            setActionError("Required Email...")
-        }
-        
+
     }
 
     return {

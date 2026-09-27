@@ -1,6 +1,7 @@
-import {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {registration} from "@/services/auth.service";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { registration } from "@/services/auth.service";
+import { emailValidator } from "@/utils/helper";
 
 export const useRegister = () => {
   const [fullName, setFullName] = useState("");
@@ -8,7 +9,7 @@ export const useRegister = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [gender, setGender] = useState("male");
-  
+
   const [branch, setBranch] = useState("computer");
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,8 +48,16 @@ export const useRegister = () => {
   };
 
   const onSubmit = async () => {
-    if (fullName !== "" && email !== "" && password !== "" && confirmPassword !== ""){
-      setIsSubmitting(true);
+    if (!emailValidator(email)) {
+      setActionError("Provide valid Email Formate")
+      return;
+    }
+
+    if (fullName === "" || email === "" || password === "" || confirmPassword === "") {
+      setActionError("Must Fill All Required Fields");
+      return;
+    }
+    setIsSubmitting(true);
     setActionError(null);
 
     const userDetails = {
@@ -67,10 +76,7 @@ export const useRegister = () => {
     } finally {
       setIsSubmitting(false);
     }
-    }
-    else{
-      setActionError("Must Fill All Required Fields")
-    }
+
   };
 
   return {

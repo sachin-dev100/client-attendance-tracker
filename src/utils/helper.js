@@ -1,11 +1,11 @@
-import {getYear, getMonth, getDate} from "date-fns";
-import {enUS} from "date-fns/locale";
-import {Navigate, Route} from "react-router-dom";
+import { getYear, getMonth, getDate } from "date-fns";
+import { enUS } from "date-fns/locale";
+import { Navigate, Route } from "react-router-dom";
 
 export const noOfDaysInMonth = (year, month) => {
   const days = [];
   for (let i = 1; i <= new Date(year, month, 0).getDate(); i++) {
-    days.push({id: i, day: i});
+    days.push({ id: i, day: i });
   }
   return days;
 };
@@ -14,7 +14,7 @@ export const getYearList = () => {
   const years = [];
   const currentYear = getYear(new Date());
   for (let i = currentYear - 5; i <= currentYear; i++) {
-    years.push({value: i, label: i});
+    years.push({ value: i, label: i });
   }
   return years;
 };
@@ -43,19 +43,26 @@ export const createHashMap = (arrayOfObjects) => {
 export const subjectMenuMethod = [
   {
     methodName: "Edit",
-    method: () => {},
+    method: () => { },
   },
   {
     methodName: "Delete",
-    method: () => {},
+    method: () => { },
   },
 ];
 
 export const dateFormatter = (isoDate) => {
   const date = new Date(isoDate);
 
-// Format options to get "18-Sep"
+  // Format options to get "18-Sep"
   const formatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short' });
   const formatted = formatter.format(date).replace(' ', '-').toLowerCase();
   return formatted
+}
+
+export const emailValidator = (email) => {
+  if (email.slice(-10) === "@gmail.com") {
+    return true;
+  }
+  return false;
 }

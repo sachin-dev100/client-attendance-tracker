@@ -1,5 +1,5 @@
-import { CreditCard } from "lucide-react";
-import {apiHandler} from "../lib/api.js";
+// import { CreditCard } from "lucide-react";
+import { apiHandler } from "../lib/api.js";
 
 export const registration = async (userDetails) => {
   const data = await apiHandler({
@@ -25,7 +25,7 @@ export const login = async (userCredential) => {
   return data;
 };
 
-export const emailValidation = async (emailDetails) => {
+export const isEmailExist = async (emailDetails) => {
   const isEmailValid = await apiHandler({
     endPoint: 'auth/email-validator',
     method: "POST",
@@ -37,7 +37,7 @@ export const emailValidation = async (emailDetails) => {
   return isEmailValid
 }
 
-export const setNewPassword = async(updatedPassword) => {
+export const setNewPassword = async (updatedPassword) => {
   const getUpdatedDetails = await apiHandler({
     endPoint: 'auth/password-recovery',
     method: "PUT",
@@ -48,6 +48,6 @@ export const setNewPassword = async(updatedPassword) => {
   return getUpdatedDetails
 }
 
-export const loggingWithGoogle = () => {
-  window.location.href = "http://localhost:3000/api/v1/auth/google";
-};
+// export const loggingWithGoogle = () => {
+//   window.location.href = "http://localhost:3000/api/v1/auth/google";
+// };
